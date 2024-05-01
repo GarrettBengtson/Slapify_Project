@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views
+from . import views as SlapifyViews
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', SlapifyViews.index, name='index'),
 ]
