@@ -34,3 +34,7 @@ urlpatterns = [
     path('create_account/', views.create_account, name='create_account'),
     path('create_account_success/', views.create_account_success, name='create_account_success'),
 ]
+
+# to serve the song files
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

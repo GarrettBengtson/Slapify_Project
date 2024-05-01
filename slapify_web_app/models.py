@@ -2,9 +2,10 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import BaseUserManager
+# import to support mp3 playing
+from mutagen.mp3 import MP3
 
 # Create your models here.
-
 
 class UserManager(BaseUserManager):
     def create_user(self, username, email, password=None, user_type='User', **kwargs):
@@ -52,3 +53,43 @@ class User(AbstractUser):
         related_name='custom_slapifyuser_user_permissions', 
         related_query_name='custom_slapifyuser_user_permission'
     )
+
+class Song(models.Model):
+    title = models.CharField(max_length=100)
+    artist = models.CharField(max_length=100)
+    # types for genre
+    genre_choices = (
+        ('Pop', 'Pop'),
+        ('Rock', 'Rock'),
+        ('Classical', 'Classical'),
+        ('Rap', 'Rap'),
+        ('Alt', 'Alt'),
+        ('Indie', 'Indie'),
+        ('Other', 'Other')
+    )
+    genre = models.CharField(max_length=20, choices=genre_choices, default='Other')
+    song_file = models.FileField(upload_to='songs/')
+    duration = models.FloatField(blank=True, null=True)
+
+    # calculate the audio and duration using the uploaded song_file
+    def calculate_duration(self, *args, **kwargs):
+        if self.song_file.name.endswith('.mp3'):
+            audio = MP3(self.song_file)
+            self.duration = round(audio.info.length / 60, 2)
+        # incorrect file type
+        else:
+            self.duration = None 
+
+        super().save(*args, **kwargs)
+
+
+    def __str__(self):
+        return self.title
+
+class Playlist(models.Model):
+    name = models.CharField(max_length=100)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    songs = models.ManyToManyField(Song)
+
+    def __str__(self):
+        return self.name
