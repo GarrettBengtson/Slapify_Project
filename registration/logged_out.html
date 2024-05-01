@@ -1,0 +1,9 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+<h2>Logout</h2>
+    <div class="logged_out_text">
+        <p>Successfully logged out!</p>
+        <a href="{% url 'login'%}">Go back to Login</a> 
+    </div>
+{% endblock %}

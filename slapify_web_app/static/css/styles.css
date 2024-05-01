@@ -1,0 +1,106 @@
+body {
+    background-color: rgb(58, 58, 58);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(209, 209, 209);
+}
+
+p {}
+
+h2 {
+
+    text-align: center;
+    margin: 30px;
+}
+
+.navbar {
+    background-color: black;
+    width: 100%;
+}
+
+#logout-form {
+    display: inline;
+}
+
+#logout-form button {
+    padding: 0;
+    margin: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    display: inline;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.login_para {
+    text-align: center;
+}
+
+.login_form {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.create_form {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login_table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.submit_button {
+    margin: auto;
+    display: flex;
+    color: rgb(209, 209, 209);
+    background-color: rgb(27, 27, 27);
+}
+
+tr.table_row>td {
+    text-align: left;
+    padding: 4px;
+}
+
+.logged_out_text {
+    text-align: center;
+}
+
+.password_reset_form {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+tr.password_reset_form_row>td {
+    text-align: left;
+    padding: 4px;
+}
+
+pre {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.form-group {
+    text-align: center;
+    display: block;
+    margin: 10px 0;
+    width: 100%;
+}

@@ -1,0 +1,48 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+
+    <h2>Login</h2>
+
+  {% if form.errors %}
+    <p class="login_para">Your username and password didn't match. Please try again.</p>
+  {% endif %}
+
+  {% if next %}
+    {% if user.is_authenticated %}
+      <p class="login_para">Your account doesn't have access to this page. To proceed,
+      please login with an account that has access.</p>
+    {% else %}
+      <p class="login_para">Please login to access your Slapify account.</p>
+    {% endif %}
+  {% endif %}
+
+  <div class="login_form">
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <table class="login_table">
+          <tr class="table_row">
+            <td>{{ form.username.label_tag }}</td>
+            <td>{{ form.username }}</td>
+          </tr>
+          <tr class="table_row">
+            <td>{{ form.password.label_tag }}</td>
+            <td>{{ form.password }}</td>
+          </tr>
+        </table>
+        <div>
+            <input type="submit" value="Log in" class="submit_button">
+        </div>
+        <input type="hidden" name="next" value="{{ next }}">
+      </form>
+
+      <p>
+        Forgot password?
+        <a href="{% url 'password_reset' %}">Reset password</a>
+      </p>
+      <p>
+        Don't have an account?
+        <a href="{% url 'create_account' %}">Create account</a>
+      </p>
+  </div>
+{% endblock %}
