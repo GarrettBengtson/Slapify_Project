@@ -26,10 +26,11 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
-    path('', RedirectView.as_view(url='slapify/', permanent=True)),
+    path('', RedirectView.as_view(url='/accounts/login/'), name='login'),
     path('admin/', admin.site.urls),
     path('slapify/', include('slapify_web_app.urls')),
     # Add Django site authentication urls (for login, logout, password management)
     path('accounts/', include('django.contrib.auth.urls')),
     path('create_account/', views.create_account, name='create_account'),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('create_account_success/', views.create_account_success, name='create_account_success'),
+]

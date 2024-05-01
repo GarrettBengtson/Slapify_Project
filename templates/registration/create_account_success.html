@@ -1,0 +1,9 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+<h2>Account Creation Success</h2>
+    <div class="logged_out_text">
+        <p>Successfully created account!</p>
+        <a href="{% url 'login'%}">Go back to Login</a> 
+    </div>
+{% endblock %}
