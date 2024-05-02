@@ -3,6 +3,12 @@
 
 {% block content %}
     <title>Slapify Home</title>
-    <p>This is Slapify</p>
-    <h2>dynamic stuff</h2>
+    <h1 class="workspace">{{user.get_username}}'s Slapify Workspace:</h1>
+    <div class="col-md-12 text-center">
+        <button type="button" class="block" onclick="location.href = '/my_playlists/'">View Your Playlists</button>
+        <button type="button" class="block" onclick="location.href = '/song_list/'">Search for Songs</button>
+    </div>
+    {% if user.user_type == "Artist" %} 
+        <button type="button" class="ablock" onclick="location.href = '/add_song/'">Add New Songs</button>
+    {% endif %}
 {% endblock content %}
