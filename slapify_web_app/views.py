@@ -2,6 +2,8 @@ from typing import Any
 from django.db.models.query import QuerySet
 from django.shortcuts import render
 from .models import Playlist
+from .models import UserRequest
+from .models import AdminEdit
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 
@@ -23,3 +25,13 @@ class PlaylistDetailView(generic.DetailView):
         return(
             Playlist.objects.filter(user=self.request.user)
         )
+
+class UserRequestView(generic.DetailView):
+    """Lists User Requests"""
+    model = UserRequest
+    template_name = 'admin_user_request.html'
+
+class AdminEditView(generic.DetailView):
+    """Lists User Entries"""
+    model = AdminEdit
+    template_name = 'admin_edit.html'
