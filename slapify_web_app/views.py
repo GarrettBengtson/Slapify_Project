@@ -31,7 +31,17 @@ class UserRequestView(generic.DetailView):
     model = UserRequest
     template_name = 'admin_user_request.html'
 
+    def get_queryset(self):
+        return(
+            UserRequest.objects.filter(user=self.request.user)
+        )
+
 class AdminEditView(generic.DetailView):
     """Lists User Entries"""
     model = AdminEdit
     template_name = 'admin_edit.html'
+
+    def get_queryset(self):
+        return(
+            AdminEdit.objects.filter(user=self.request.user)
+        )
