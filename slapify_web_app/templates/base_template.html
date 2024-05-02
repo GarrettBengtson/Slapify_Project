@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
 </head>
 <body>
-    <div>
+    <div class="col-lg-12">
         <ul class="navbar">
             {% if user.is_authenticated %}
             <li class="navbar-item">
@@ -40,32 +40,44 @@
             {% endif %}
         </ul>
     </div>
-    <div class="col-sm-2">
-        {% block sidebar %}
-        {% if user.is_authenticated %}
-            <ul class="sidebar-nav">
-                <li class="sidebar-item">User: {{ user.get_username }}</li>
-                {% for playlist in user_playlists %}
-                    <li class="sidebar-item">
-                        <a href="{% url 'playlist_details' playlist.pk %}">{{ playlist.name }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
-
-            <ul class="sidebar-nav">
-                {% if user.is_staff %}
+    <div class="row">
+        <div class="col-lg-2 d-lg-block sidebar">
+            {% block sidebar %}
+            {% if user.is_authenticated %}
+                <ul class="sidebar-nav">
+                    <li class="sidebar-item">{{user.user_type}}: {{ user.get_username }}</li>
                     <hr>
-                    <ul class="sidebar-nav">
-                        <li>Staff</li>
-                        <li><a href="">View all songs</a></li>
-                        <li><a href="">View authors</a></li>
-                    </ul>
-                {% endif %}
-        {% endif %}
-            </ul>          
-        {% endblock %}
-      </div>
+                    {% for playlist in user_playlists %}
+                        <li class="sidebar-item">
+                            <a href="{% url 'playlist_details' playlist.pk %}">{{ playlist.name }}</a>
+                        </li>
+                    {% endfor %}
+                    <hr>
+                    <li class="sidebar-item">
+                        <a href="{% url 'create_playlist' %}">Create New Playlist</a>
+                    </li>
+                    <li class="sidebar-item">Search Songs</li>
+                    {% comment %} {% for user in users %}
+                        <li class="sidebar-item">
+                            <p>{{ user.user_type }} r</p>
+                        </li>
+                    {% endfor %} {% endcomment %}
+                </ul>
 
-    <div>{% block content %}{% endblock content %}</div>
+                <ul class="sidebar-nav">
+                    {% if user.user_types %}
+                        <hr>
+                        <ul class="sidebar-nav">
+                            <li>Admin</li>
+                            <li><a href="">View something</a></li>
+                            <li><a href="">View something seles</a></li>
+                        </ul>
+                    {% endif %}
+            {% endif %}
+                </ul>          
+            {% endblock %}
+        </div>
+        <div class="col-lg-10">{% block content %}{% endblock content %}</div>
+    </div>
 </body>
 </html>
