@@ -114,3 +114,36 @@ pre {
     margin: 10px 0;
     width: 100%;
 }
+
+.playlist_table{
+    width: 70%;   
+    margin-left: 250px;
+}
+.playlist_table_row{
+    border-bottom: 1px solid;
+}
+.playlist_table_head{
+    text-align: right;
+    padding: 10px;
+}
+.playlist_table_cell{
+    text-align: right;
+    padding: 10px;
+}
+
+audio{
+}
+audio::webkit-media-controls-panel{
+    display: none;
+}
+
+.progress-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+#progress-bar{
+    width: 50%;
+}
