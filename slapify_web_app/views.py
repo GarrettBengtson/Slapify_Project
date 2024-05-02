@@ -1,9 +1,7 @@
 from typing import Any
 from django.db.models.query import QuerySet
 from django.shortcuts import render
-from .models import Playlist
-from .models import UserRequest
-from .models import AdminEdit
+from .models import Playlist, UserRequest, AdminEdit
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 
@@ -45,3 +43,10 @@ class AdminEditView(generic.DetailView):
         return(
             AdminEdit.objects.filter(user=self.request.user)
         )
+
+class AdminView(generic.DetailView):
+    template_name = 'admin_main.html'
+
+    def get_queryset(self):
+        return super().get_queryset()
+    
