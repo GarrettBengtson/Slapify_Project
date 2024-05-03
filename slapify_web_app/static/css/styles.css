@@ -29,18 +29,24 @@ h2 {
     list-style-type: none;
 }
 
+.invisible_text {
+    color: rgba(0, 0, 0, 0);
+    /* make the text transparent. */
+}
+
 .sidebar-nav {
     margin-top: 20px;
     padding: 5;
-    list-style:inside;
+    list-style: inside;
 }
 
-.navbar-item{
+.navbar-item {
     display: inline;
     margin-left: 20px;
     margin-right: 20px;
 }
-.sidebar-item{
+
+.sidebar-item {
     display: block;
     margin-top: 10px;
 }
@@ -91,7 +97,7 @@ tr.table_row>td {
     margin-right: auto;
 }
 
-.password_reset_text{
+.password_reset_text {
     text-align: center;
 }
 
@@ -119,43 +125,101 @@ pre {
     width: 100%;
 }
 
-.playlist_table{
+.playlist_table {
     width: 90%;
 }
-.playlist_table_row{
+
+.playlist_table_row {
     border-bottom: 1px solid;
 }
-.playlist_table_head{
-    text-align: right;
-    padding: 10px;
-}
-.playlist_table_cell{
+
+.playlist_table_head {
     text-align: right;
     padding: 10px;
 }
 
-audio::webkit-media-controls-panel{
+.playlist_table_cell {
+    text-align: right;
+    padding: 10px;
+}
+
+audio::webkit-media-controls-panel {
     display: none;
 }
 
-.progress-container{
+.progress-container {
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-top: 30px;
+    position: relative;
 }
 
-#progress-bar{
+#progress-bar {
+    position: absolute;
+    right: 30%;
     width: 50%;
 }
 
-.playlist_form{
+.playlist_head_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+    position: relative;
+}
+
+.playlist_head {
+    position: absolute;
+    right: 30%;
+    width: 50%;
+}
+
+.playlist_form {
+    position: absolute;
+    right: 32%;
+    top: 50%;
+    width: 50%;
     text-align: center;
 }
 
-.playlist_form_table{
+.playlist_form_table {
     margin: auto;
     margin-bottom: 10px;
+}
+
+.playlist_form_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+    position: relative;
+}
+
+.playlist_delete_form_buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.playlist_button_container {
+    display: flex;
+    margin: 10px;
+    position: relative;
+}
+
+.playlist_submit_button {
+    position: absolute;
+    right: 50%;
+    margin: auto;
+    display: flex;
+    color: rgb(209, 209, 209);
+    background-color: rgb(27, 27, 27);
 }
 
 .ablock {
@@ -166,10 +230,10 @@ audio::webkit-media-controls-panel{
     background-color: #019247;
     padding: 14px 28px;
     font-size: 24px;
-    color:white;
+    color: white;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     cursor: pointer;
-    text-align: center; 
+    text-align: center;
     border-radius: 4px;
     margin-left: auto;
     margin-right: auto;
@@ -184,7 +248,7 @@ audio::webkit-media-controls-panel{
     width: 37.1%;
     height: 100px;
     font-size: 24px;
-    color:white;
+    color: white;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     letter-spacing: 1px;
     cursor: pointer;
@@ -198,7 +262,7 @@ audio::webkit-media-controls-panel{
 
 .workspace {
     color: white;
-    font-weight:600;
+    font-weight: 600;
     text-decoration: underline;
     margin-left: 20px;
 }

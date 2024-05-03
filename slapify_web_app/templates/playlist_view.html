@@ -3,7 +3,9 @@
 
 {% block content %}
 
-<h2>{{ object.name }}</h2>
+<div class="playlist_head_container">
+    <h2 class="playlist_head">{{ object.name }}</h2>
+</div>
 <table class="playlist_table">
     <tr class="playlist_table_row">
         <th class="playlist_table_head">Title</th>
@@ -20,7 +22,12 @@
             <td class="playlist_table_cell">{{song.formatted_duration}}</td>
             <td>
                 <audio id="audio-{{ song.pk }}" src="{{ song.song_file.url }}" type="audio/mp3" preload="auto"></audio>
-                <button onclick="playAudio('audio-{{ song.pk }}')">Play/Pause</button>
+                <button class="submit_button" onclick="playAudio('audio-{{ song.pk }}')">Play/Pause</button>
+            </td>
+            <td>
+                <a href="{% url 'remove_song' playlist.pk song.pk %}">
+                    <button class="submit_button">Remove</button>
+                </a>
             </td>
         </tr>
     {% endfor %}
@@ -29,6 +36,13 @@
 <div class="progress-container">
     <progress id="progress-bar" value="0" max="100"></progress>
 </div>
+<br>
+<div class="playlist_button_container">
+    <a href="{% url 'delete_playlist' playlist.pk %}">
+        <button class="playlist_submit_button">Delete Playlist</button>
+    </a>
+</div>
+
 
 <script>
     var currentAudioId = null;

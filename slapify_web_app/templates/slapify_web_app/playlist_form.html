@@ -1,7 +1,10 @@
 {% extends "base_template.html" %}
 
 {% block content %}
-<h2>Create Playlist</h2>
+<div class="playlist_head_container">
+  <h2 class="playlist_head">Create Playlist</h2>
+</div>
+<div class="playlist_form_container">
   <div class="playlist_form">
     <form action="" method="post">
       {% csrf_token %}
@@ -12,4 +15,5 @@
       <input type="submit" value="Create Playlist" class="submit_button" />
     </form>
   </div>
+</div>
 {% endblock %}
