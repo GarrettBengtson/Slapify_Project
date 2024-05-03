@@ -78,10 +78,8 @@ def remove_song(request, playlist_pk, song_pk):
     song = get_object_or_404(Song, pk=song_pk)
     playlist = get_object_or_404(Playlist, pk=playlist_pk)
 
-    # Remove the song from the playlist
     playlist.songs.remove(song)
 
-    # Redirect back to the playlist detail page
     return redirect('playlist_details', pk=playlist.pk)
 
 class UserRequestView(generic.DetailView):

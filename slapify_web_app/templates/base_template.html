@@ -56,7 +56,9 @@
                         <li class="sidebar-item">
                             <a href="{% url 'create_playlist' %}">Create New Playlist</a>
                         </li>
-                        <li class="sidebar-item">Search Songs</li>
+                        <li class="sidebar-item">
+                            Search Songs
+                        </li>
                     </ul>
                     <ul class="sidebar-nav">
                         {% if user.user_type == 'Admin' %}

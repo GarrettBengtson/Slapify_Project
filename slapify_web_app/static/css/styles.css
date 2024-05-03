@@ -80,6 +80,8 @@ h2 {
     display: flex;
     color: rgb(209, 209, 209);
     background-color: rgb(27, 27, 27);
+    text-decoration: none;
+    /*removes underlines from link buttons */
 }
 
 tr.table_row>td {
