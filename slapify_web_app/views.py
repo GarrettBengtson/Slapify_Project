@@ -45,7 +45,7 @@ class CreatePlaylistView(LoginRequiredMixin, CreateView):
         context['user_playlists'] = Playlist.objects.filter(user=self.request.user)
         return context
     
-    # set the 'user' attriubute of Playlist to the logged in user
+    # set the 'user' attribute of Playlist to the logged in user
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
