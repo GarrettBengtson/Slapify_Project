@@ -9,7 +9,6 @@ p {}
 h2 {
     text-align: center;
     margin: 30px;
-    margin-right: 200px;
 }
 
 .navbar {
@@ -19,7 +18,6 @@ h2 {
 
 #logout-form {
     display: inline;
-    margin-right: 200px;
 }
 
 #logout-form button {
@@ -39,8 +37,8 @@ h2 {
 
 .navbar-item{
     display: inline;
-    margin-left: 200px;
-    margin-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .sidebar-item{
     display: block;
@@ -54,7 +52,7 @@ h2 {
 .login_form {
     text-align: center;
     margin-left: auto;
-    margin-right: 200px;
+    margin-right: auto;
 }
 
 .create_form {
@@ -63,7 +61,7 @@ h2 {
     justify-content: center;
     align-items: center;
     margin-left: auto;
-    margin-right: 200px;
+    margin-right: auto;
 }
 
 .login_table {
@@ -85,31 +83,27 @@ tr.table_row>td {
 
 .logged_out_text {
     text-align: center;
-    margin-right: 180px;
 }
 
 .password_reset_form {
     text-align: center;
-    margin-left: 40px;
-    margin-right: 220px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .password_reset_text{
     text-align: center;
-    margin-right: 200px;
 }
 
 tr.password_reset_form_row>td {
     text-align: right;
     padding: 4px;
     margin:auto;
-    width:80%;
 }
 
 pre {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
-    margin-right: 200px;
 }
 
 .error-message {
@@ -126,8 +120,7 @@ pre {
 }
 
 .playlist_table{
-    width: 90%;   
-    margin-right: 200px;
+    width: 90%;
 }
 .playlist_table_row{
     border-bottom: 1px solid;
@@ -158,7 +151,6 @@ audio::webkit-media-controls-panel{
 
 .playlist_form{
     text-align: center;
-    margin-right: 180px;
 }
 
 .playlist_form_table{

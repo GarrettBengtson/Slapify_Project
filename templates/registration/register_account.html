@@ -2,10 +2,10 @@
 
 {% block title %}Create Account{% endblock title %}
 
-{% block content %}
+{% block logged_out_content %}
     <form action="" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button type='submit' class='btn btn-success'>Register</button>
     </form>
-{% endblock content %}
+{% endblock %}
