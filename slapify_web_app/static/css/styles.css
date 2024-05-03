@@ -81,7 +81,14 @@ h2 {
     color: rgb(209, 209, 209);
     background-color: rgb(27, 27, 27);
     text-decoration: none;
-    /*removes underlines from link buttons */
+    border-bottom-style: none;
+}
+
+a:hover,
+a:visited,
+a:link,
+a:active {
+    text-decoration: none;
 }
 
 tr.table_row>td {
@@ -121,10 +128,14 @@ pre {
 }
 
 .form-group {
-    text-align: center;
+    text-align: right;
     display: block;
     margin: 10px 0;
     width: 100%;
+}
+
+#form_user_type {
+    text-align: center;
 }
 
 .playlist_table {

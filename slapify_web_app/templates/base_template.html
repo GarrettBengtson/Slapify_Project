@@ -27,7 +27,7 @@
             <li class="navbar-item">
                 <form id="logout-form" method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
-                <button type="submit" class="btn btn-link">Logout</button>
+                <button type="submit" class="btn btn-link" style="text-decoration: none;">Logout</button>
                 </form>
             </li>
             {% else %}
@@ -57,7 +57,7 @@
                             <a href="{% url 'create_playlist' %}">Create New Playlist</a>
                         </li>
                         <li class="sidebar-item">
-                            Search Songs
+                            <a href="{% url 'song_search' %}">Search Songs</a>
                         </li>
                     </ul>
                     <ul class="sidebar-nav">

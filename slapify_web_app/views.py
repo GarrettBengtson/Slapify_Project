@@ -82,6 +82,18 @@ def remove_song(request, playlist_pk, song_pk):
 
     return redirect('playlist_details', pk=playlist.pk)
 
+def song_search(request):
+    return render(request, 'slapify_web_app/song_search.html')
+
+# class SongSearchView():
+#     model = Playlist
+
+#     # allow the search page to have access to the user's playlists
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['user_playlists'] = Playlist.objects.filter(user=self.request.user)
+#         return context
+
 class UserRequestView(generic.DetailView):
     """Lists User Requests"""
     model = UserRequest
