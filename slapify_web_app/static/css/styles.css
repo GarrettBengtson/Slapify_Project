@@ -7,7 +7,6 @@ body {
 p {}
 
 h2 {
-
     text-align: center;
     margin: 30px;
 }
@@ -92,9 +91,14 @@ tr.table_row>td {
     margin-right: auto;
 }
 
+.password_reset_text{
+    text-align: center;
+}
+
 tr.password_reset_form_row>td {
     text-align: left;
     padding: 4px;
+    margin: auto;
 }
 
 pre {
@@ -116,8 +120,7 @@ pre {
 }
 
 .playlist_table{
-    width: 70%;   
-    margin-left: 250px;
+    width: 90%;
 }
 .playlist_table_row{
     border-bottom: 1px solid;
@@ -131,8 +134,6 @@ pre {
     padding: 10px;
 }
 
-audio{
-}
 audio::webkit-media-controls-panel{
     display: none;
 }
@@ -146,6 +147,15 @@ audio::webkit-media-controls-panel{
 
 #progress-bar{
     width: 50%;
+}
+
+.playlist_form{
+    text-align: center;
+}
+
+.playlist_form_table{
+    margin: auto;
+    margin-bottom: 10px;
 }
 
 .ablock {

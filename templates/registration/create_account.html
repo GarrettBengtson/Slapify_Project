@@ -1,6 +1,6 @@
 {% extends "base_template.html" %}
 
-{% block content %}
+{% block logged_out_content %}
     <h2>Create Account</h2>
 
     <div class="create_form">
@@ -45,4 +45,4 @@
             <input type="hidden" name="next" value="{{ next }}">
         </form>
     </div>
-{% endblock content %}
+{% endblock %}

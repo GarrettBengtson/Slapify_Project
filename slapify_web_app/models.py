@@ -42,7 +42,6 @@ class User(AbstractUser):
         permissions = [
             ('can_view_special_content', 'Can view special content'),
         ]
-     # Define related_name for groups and user_permissions fields
     groups = models.ManyToManyField(
         'auth.Group',
         related_name='custom_slapifyuser_groups',

@@ -1,0 +1,15 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+<h2>Create Playlist</h2>
+  <div class="playlist_form">
+    <form action="" method="post">
+      {% csrf_token %}
+      <table class="playlist_form_table">
+        {{ form.as_table }}
+      </table>
+      <p>You can add songs to your playlist by using the search function</p>
+      <input type="submit" value="Create Playlist" class="submit_button" />
+    </form>
+  </div>
+{% endblock %}
