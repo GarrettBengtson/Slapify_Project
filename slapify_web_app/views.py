@@ -94,16 +94,6 @@ def song_search(request):
 #         context['user_playlists'] = Playlist.objects.filter(user=self.request.user)
 #         return context
 
-class UserRequestView(generic.DetailView):
-    """Lists User Requests"""
-    model = UserRequest
-    template_name = 'admin_user_request.html'
-
-    def get_queryset(self):
-        return(
-            UserRequest.objects.filter(user=self.request.user)
-        )
-
 class AdminEditView(generic.DetailView):
     """Lists User Entries"""
     model = AdminEdit
