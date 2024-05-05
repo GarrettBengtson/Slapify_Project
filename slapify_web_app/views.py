@@ -1,7 +1,7 @@
 from typing import Any
 from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Playlist, Song, UserRequest, AdminEdit
+from .models import Playlist, Song, AdminEdit
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -17,6 +17,14 @@ def index(request):
         'user_playlists': user_playlists,
     }
     return render(request, 'index.html', context)
+
+def my_playlists(request):
+    user_playlists = Playlist.objects.filter(user=request.user)
+
+    context = {
+        'user_playlists': user_playlists,
+    }
+    return render(request, 'my_playlists.html', context)
 
 class PlaylistDetailView(generic.DetailView):
     """Lists songs in the playlist"""
