@@ -128,14 +128,14 @@ pre {
 }
 
 .form-group {
-    text-align: right;
+    text-align: left;
     display: block;
     margin: 10px 0;
     width: 100%;
 }
 
 #form_user_type {
-    text-align: center;
+    text-align: left;
 }
 
 .playlist_table {

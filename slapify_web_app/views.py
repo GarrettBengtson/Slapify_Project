@@ -34,7 +34,7 @@ def add_song(request):
             song = form.save(commit=False)
             song.artist = request.user.username  # Set artist to the username of the logged-in user
             song.save()
-            return redirect('home')  # Redirect to home page after successful form submission
+            return redirect('index')  # Redirect to home page after successful form submission
     else:
         form = SongForm()
     return render(request, 'slapify_web_app/add_song.html', {'form': form})
