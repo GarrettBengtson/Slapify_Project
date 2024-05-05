@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from slapify_web_app.models import User
+from slapify_web_app.models import User, Song
 
 
 class CreateAccountForm(UserCreationForm):
@@ -20,3 +20,15 @@ class CreateAccountForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+
+class SongForm(forms.ModelForm):
+    class Meta:
+        model = Song
+        fields = ['title', 'genre', 'song_file']  # 'Artist' field will be set automatically
+
+    def clean_song_file(self):
+        song_file = self.cleaned_data.get('song_file')
+        if not song_file.name.endswith('.mp3'):
+            raise forms.ValidationError('Only MP3 files are allowed.')
+        return song_file

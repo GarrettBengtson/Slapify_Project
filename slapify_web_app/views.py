@@ -8,6 +8,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
+from slapify_project.forms import SongForm
 
 # Create your views here.
 def index(request):
@@ -25,6 +26,18 @@ def my_playlists(request):
         'user_playlists': user_playlists,
     }
     return render(request, 'my_playlists.html', context)
+
+def add_song(request):
+    if request.method == 'POST':
+        form = SongForm(request.POST, request.FILES)
+        if form.is_valid():
+            song = form.save(commit=False)
+            song.artist = request.user.username  # Set artist to the username of the logged-in user
+            song.save()
+            return redirect('home')  # Redirect to home page after successful form submission
+    else:
+        form = SongForm()
+    return render(request, 'slapify_web_app/add_song.html', {'form': form})
 
 class PlaylistDetailView(generic.DetailView):
     """Lists songs in the playlist"""

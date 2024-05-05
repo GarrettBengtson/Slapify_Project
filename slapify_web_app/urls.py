@@ -11,4 +11,5 @@ urlpatterns = [
     path('admin_main', views.AdminView.as_view(), name='admin_details'),
     path('admin_edit', views.AdminEditView.as_view(), name='admin_edit_details'),
     path('my_playlists/', views.my_playlists, name='my_playlists'),
+    path('add_song/', views.add_song, name="add_song"),
 ]
