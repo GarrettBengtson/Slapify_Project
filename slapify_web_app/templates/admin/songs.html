@@ -1,5 +1,20 @@
 {% extends "base_template.html" %}
 
 {% block content %}
-    
+    <table class="songs_table">
+        <tr class="song_table_row">
+            <th class="song_table_head">Title</th>
+            <th class="song_table_head">Artist</th>
+            <th class="song_table_head">Genre</th>
+            <th class="song_table_head">Duration</th>
+        </tr>
+        {% for song in object.songs.all %}
+            <tr class="song_table_row">
+                <td class="song_table_cell">{{song.title}}</td>
+                <td class="song_table_cell">{{song.artist}}</td>
+                <td class="song_table_cell">{{song.genre}}</td>
+                <td class="song_table_cell">{{song.formatted_duration}}</td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}

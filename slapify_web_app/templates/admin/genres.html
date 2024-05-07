@@ -1,5 +1,14 @@
 {% extends "base_template.html" %}
 
 {% block content %}
-    
+<table class="genres_table">
+    <tr class="genre_table_row">
+        <th class="genre_table_head">Genre</th>
+    </tr>
+    {% for genre in object.songs.genre.all %}
+        <tr class="genre_table_row">
+            <td class="genre_table_cell">{{genre}}</td>
+        </tr>
+    {% endfor %}
+</table>
 {% endblock %}
