@@ -1,15 +1,11 @@
 {% extends "base_template.html" %}
 
 {% block content %}
-    <title>Genres</title>
-    <table class="genres_table">
-        <tr class="genre_table_row">
-            <th class="genre_table_head">Genre</th>
-        </tr>
-        {% for genre in object.songs.genre.all %}
-            <tr class="genre_table_row">
-                <td class="genre_table_cell">{{genre}}</td>
-            </tr>
-        {% endfor %}
-    </table>
+    <div class="playlist_head_container">
+        <h2 class="playlist_head">Genres</h2>
+    </div>
+    
+    <div class="col-md-12 text-center">
+        <button type="button" class="block" onclick="location.href = '/slapify/songs/'">View Songs</button>
+    </div>
 {% endblock %}

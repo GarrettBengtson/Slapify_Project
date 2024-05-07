@@ -123,10 +123,12 @@ def add_song_to_playlist(request):
     return render(request, 'slapify_web_app/add_song_to_playlist.html')
 
 def AdminView(request):
-    return render(request, 'admin/admin_main.html')
+    return render(request, 'admin/admin.html')
 
 def genres(request):
     return render(request, 'admin/genres.html')
 
 def songs(request):
-    return render(request, 'admin/songs.html')
+    songs = Song.objects.filter()
+
+    return render(request, 'admin/songs.html', {'songs':songs})
