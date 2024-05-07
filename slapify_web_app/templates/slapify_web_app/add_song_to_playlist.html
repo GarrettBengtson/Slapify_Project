@@ -1,5 +1,25 @@
 {% extends "base_template.html" %}
 
 {% block content %}
+<div class="playlist_head_container">
+    <h2 class="playlist_head">Add "{{ song.title }}" to Playlist</h2>
+</div>
+<br>
+<table class="user_playlists_table">
+    {% for playlist in user_playlists %}
+        <tr class="user_playlists_table_row" data-url="{% url 'send_song_to_playlist' song.pk playlist.pk %}">
+            <td class="user_playlists_table_cell">{{ playlist.name }}</td>
+        </tr>
+    {% endfor %}
+</table>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.user_playlists_table_row').on('click', function() {
+        var url = $(this).data('url');
+        window.location.href = url;
+    });
+});
+</script>
 {% endblock content %}

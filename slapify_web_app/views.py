@@ -117,13 +117,35 @@ def song_search(request):
                       {'searched':searched,
                        'songs':songs}) 
     else:
-        return render(request, 'slapify_web_app/song_search.html')
+        songs = Song.objects.all()
+        return render(request, 'slapify_web_app/song_search.html',
+                      {'songs':songs})
 
-def add_song_to_playlist(request):
-    return render(request, 'slapify_web_app/add_song_to_playlist.html')
+def add_song_to_playlist(request, song_pk):
+    # Get the song object
+    song = get_object_or_404(Song, pk=song_pk)
+    user_playlists = Playlist.objects.filter(user=request.user)
+
+    # Prevents a playlist from being displayed if it already has the song
+    user_playlists_without_song = user_playlists.exclude(songs=song)
+
+    context = {
+        'song': song,
+        'user_playlists': user_playlists_without_song,
+    }
+    return render(request, 'slapify_web_app/add_song_to_playlist.html', context)
+
+def send_song_to_playlist(request, song_pk, playlist_pk):
+    # Get the song and playlist objects
+    song = get_object_or_404(Song, pk=song_pk)
+    playlist = get_object_or_404(Playlist, pk=playlist_pk)
+
+    playlist.songs.add(song)
+    return redirect('song_search')
+
 
 def AdminView(request):
-    return render(request, 'admin/admin_main.html')
+    return render(request, 'admin/admin.html')
 
 def genres(request):
     return render(request, 'admin/genres.html')

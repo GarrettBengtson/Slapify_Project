@@ -1,9 +1,9 @@
 {% extends "base_template.html" %}
 
 {% block content %}
-<h2>
-    Search For a Song
-</h2>
+<div class="playlist_head_container">
+    <h2 class="playlist_head">Search For a Song</h2>
+</div>
 <p>
     You can search for a song by title, genre, or artist.
 </p>
@@ -17,7 +17,10 @@
 
 <!-- Check if the user has searched something. Show this if they have -->
 {% if searched %}
-    <h2>Results for "{{searched}}"</h2>
+    <br>
+    <div class="playlist_head_container">
+        <h2 class="playlist_head">Results for "{{searched}}"</h2>
+    </div>
 
     <table class="playlist_table">
         <tr class="playlist_table_row">
@@ -46,8 +49,87 @@
             </tr>
         {% endfor %}
     </table>
-
-
+<!-- If the user hasn't searched, display all songs -->
+{% else %}
+    <br>
+    <div class="playlist_head_container">
+        <h2 class="playlist_head">All Songs</h2>
+    </div>
+    <table class="playlist_table">
+        <tr class="playlist_table_row">
+            <th class="playlist_table_head">Title</th>
+            <th class="playlist_table_head">Artist</th>
+            <th class="playlist_table_head">Genre</th>
+            <th class="playlist_table_head">Duration</th>
+            <th class="playlist_table_head">Add to Playlist</th>
+            <th class="playlist_table_head"></th>
+        </tr>
+        {% for song in songs %}
+            <tr class="playlist_table_row">
+                <td class="playlist_table_cell">{{song.title}}</td>
+                <td class="playlist_table_cell">{{song.artist}}</td>
+                <td class="playlist_table_cell">{{ song.genre }}</td>
+                <td class="playlist_table_cell">{{song.formatted_duration}}</td>
+                <td>
+                    <a href="{% url 'add_to_playlist' song.pk %}">
+                        <button id="remove_song_button" class="submit_button">Add</button>
+                    </a>
+                </td>
+                <td>
+                    <audio id="audio-{{ song.pk }}" src="{{ song.song_file.url }}" type="audio/mp3" preload="auto"></audio>
+                    <button class="submit_button" onclick="playAudio('audio-{{ song.pk }}')">Play/Pause</button>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endif %}
-
+    <div class="progress-container">
+        <progress id="progress-bar" value="0" max="100"></progress>
+    </div>
+    <br>
+    <script>
+        var currentAudioId = null;
+    
+        function playAudio(id) {
+            var audio = document.getElementById(id);
+            var progressBar = document.getElementById('progress-bar')
+            currentAudioId = id;
+    
+            if (audio.paused) {
+                audio.play();
+                updateProgressBar(audio, progressBar)
+            } else {
+                audio.pause();
+            }
+        }
+    
+        function updateProgressBar(audio, progressBar) {
+            var progress = (audio.currentTime / audio.duration * 100);
+            progressBar.value = progress;
+            
+            if (!audio.paused && progress < 100) {
+                setTimeout(function() {
+                    updateProgressBar(audio, progressBar);
+                }, 1000);
+            }
+        }
+    
+        document.getElementById('progress-bar').addEventListener('click', function(e) {
+            var audio = document.getElementById(currentAudioId);
+            console.log('Audio:', audio);
+            var progressBar = e.target;
+            console.log('ProgressBar:', progressBar);
+            var pos = (e.offsetX / progressBar.offsetWidth) * audio.duration;
+            console.log('Position:', pos);
+    
+            // Ensure audio is loaded
+            if (audio.readyState >= 2){
+                audio.currentTime = pos;
+            } else{
+                audio.addEventListener('loadeddata', function(){
+                    audio.currentTime = pos;
+                });
+            }
+        });
+    </script>
 {% endblock content %}
