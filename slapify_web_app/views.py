@@ -115,28 +115,21 @@ def song_search(request):
 #         context['user_playlists'] = Playlist.objects.filter(user=self.request.user)
 #         return context
 
-def admin(request):
-    all_genres = Song.genre
-    all_songs = Song.objects
+class AdminView(generic.DetailView):
+    template_name = 'admin.html'
 
-    context = {
-        'all_songs': all_songs,
-        'all_genres': all_genres,
-    }
-    return render(request, 'admin.html', context)
+class Songs(generic.DetailView):
+    model = Song
+    template_name = 'songs.html'
 
-def genres(request):
-    all_genres = Song.genre
-
-    context = {
-        'all_genres': all_genres,
-    }
-    return render(request, 'genres.html', context)
-
-def songs(request):
-    all_songs = Song.objects
-
-    context = {
-        'all_songs': all_songs,
-    }
-    return render(request, 'songs.html', context)
+class Genres(generic.DetailView):
+    genre_choices = (
+        ('Pop', 'Pop'),
+        ('Rock', 'Rock'),
+        ('Classical', 'Classical'),
+        ('Rap', 'Rap'),
+        ('Alt', 'Alt'),
+        ('Indie', 'Indie'),
+        ('Other', 'Other')
+    )
+    template_name = 'genres.html'
