@@ -5,7 +5,7 @@ from slapify_web_app.models import User, Song
 
 class CreateAccountForm(UserCreationForm):
     email = forms.EmailField(required=True)
-    user_type = forms.ChoiceField(choices=[('User', 'User'), ('Artist', 'Artist')])
+    user_type = forms.ChoiceField(choices=[('User', 'User'), ('Artist', 'Artist'), ('Admin', 'Admin')])
 
     class Meta:
         model = User

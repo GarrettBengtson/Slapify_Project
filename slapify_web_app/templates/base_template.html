@@ -43,18 +43,6 @@
     {% block sidebar %}
         <div class="row">
             {% if user.is_authenticated %}
-                <div class="col-lg-2 d-lg-block sidebar">
-                    <ul class="sidebar-nav">
-                        {% if user.user_type == 'Admin' %}
-                            <hr>
-                            <ul class="sidebar-nav">
-                                <li>Admin</li>
-                                <li><a href="">View something</a></li>
-                                <li><a href="">View something seles</a></li>
-                            </ul>
-                        {% endif %}
-                    </ul>          
-                </div>
                 <div class="col-lg-10">{% block content %}{% endblock content %}</div>
             {% else %}
                 <div class="col-lg-12">{% block logged_out_content %}{% endblock logged_out_content %}</div>

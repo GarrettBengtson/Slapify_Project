@@ -1,7 +1,7 @@
 from typing import Any
 from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Playlist, Song, AdminEdit
+from .models import Playlist, Song
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -115,19 +115,21 @@ def song_search(request):
 #         context['user_playlists'] = Playlist.objects.filter(user=self.request.user)
 #         return context
 
-class AdminEditView(generic.DetailView):
-    """Lists User Entries"""
-    model = AdminEdit
-    template_name = 'admin_edit.html'
-
-    def get_queryset(self):
-        return(
-            AdminEdit.objects.filter(user=self.request.user)
-        )
-
 class AdminView(generic.DetailView):
-    template_name = 'admin_main.html'
+    template_name = 'admin.html'
 
-    def get_queryset(self):
-        return super().get_queryset()
-    
+class Songs(generic.DetailView):
+    model = Song
+    template_name = 'songs.html'
+
+class Genres(generic.DetailView):
+    genre_choices = (
+        ('Pop', 'Pop'),
+        ('Rock', 'Rock'),
+        ('Classical', 'Classical'),
+        ('Rap', 'Rap'),
+        ('Alt', 'Alt'),
+        ('Indie', 'Indie'),
+        ('Other', 'Other')
+    )
+    template_name = 'genres.html'

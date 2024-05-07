@@ -11,4 +11,7 @@
     {% if user.user_type == "Artist" %} 
         <button type="button" class="ablock" onclick="location.href = '/slapify/add_song/'">Add New Songs</button>
     {% endif %}
+    {% if user.user_type == "Admin" %} 
+        <button type="button" class="ablock" onclick="location.href = '/slapify/admin/'">Admin</button>
+    {% endif %}
 {% endblock content %}
