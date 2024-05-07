@@ -43,6 +43,17 @@
     {% block sidebar %}
         <div class="row">
             {% if user.is_authenticated %}
+            <div class="col-lg d-lg-block sidebar">
+                <ul class="sidebar-nav">
+                    <li class="sidebar-item">{{user.user_type}}: {{ user.get_username }}</li>
+                    <li class="sidebar-item">
+                        <a href="{% url 'create_playlist' %}">Create New Playlist</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="{% url 'song_search' %}">Search Songs</a>
+                    </li>
+                </ul>
+            </div>
                 <div class="col-lg-10">{% block content %}{% endblock content %}</div>
             {% else %}
                 <div class="col-lg-12">{% block logged_out_content %}{% endblock logged_out_content %}</div>
