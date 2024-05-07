@@ -5,13 +5,29 @@
         <h2 class="playlist_head">Genres</h2>
     </div>
     <table class="playlist_table">
-        {% for song in songs %}
-            <tr class="playlist_table_row">
-                <td class="playlist_table_cell text-center">{{song.genre}}</td>
-            </tr>
-        {% endfor %}
+        <tr class="playlist_table_row">
+            <td class="playlist_table_cell text-center">Pop<br></td>
+        </tr>
+        <tr class="playlist_table_row">
+            <td class="playlist_table_cell text-center">Rock<br></td>
+        </tr>
+        <tr class="playlist_table_row">
+            <td class="playlist_table_cell text-center">Classical<br></td>
+        </tr>
+        <tr class="playlist_table_row">
+            <td class="playlist_table_cell text-center">Rap<br></td>
+        </tr>
+        <tr class="playlist_table_row">
+            <td class="playlist_table_cell text-center">Alt<br></td>
+        </tr>
+        <tr class="playlist_table_row">
+            <td class="playlist_table_cell text-center">Indie<br></td>
+        </tr>
+        <tr class="playlist_table_row">
+            <td class="playlist_table_cell text-center">Other</td>
+        </tr>
     </table>
     <div class="col-md-12 text-center">
-        <button type="button" class="block" onclick="location.href = '/slapify/songs/'">View Songs</button>
+        <button type="button" class="block" onclick="location.href = '/slapify/songs/'">View All Songs</button>
     </div>
 {% endblock %}
