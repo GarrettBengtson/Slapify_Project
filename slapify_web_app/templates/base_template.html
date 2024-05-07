@@ -47,6 +47,9 @@
                 <ul class="sidebar-nav">
                     <li class="sidebar-item">{{user.user_type}}: {{ user.get_username }}</li>
                     <li class="sidebar-item">
+                        <a href="{% url 'my_playlists' %}">View Playlists</a>
+                    </li>
+                    <li class="sidebar-item">
                         <a href="{% url 'create_playlist' %}">Create New Playlist</a>
                     </li>
                     <li class="sidebar-item">

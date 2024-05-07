@@ -1,26 +1,24 @@
 {% extends "base_template.html" %}
 
-{% block sidebar %}
-<div class="row">
-    {% if user.is_authenticated %}
-        <div class="col-lg-2 d-lg-block sidebar">
-            <ul class="sidebar-nav">
-                <li class="sidebar-item">{{user.user_type}}: {{ user.get_username }}</li>
-                <hr>
-                {% for playlist in user_playlists %}
-                    <li class="sidebar-item">
-                        <a href="{% url 'playlist_details' playlist.pk %}">{{ playlist.name }}</a>
-                    </li>
-                {% endfor %}
-                <hr>
-                <li class="sidebar-item">
-                    <a href="{% url 'create_playlist' %}">Create New Playlist</a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="{% url 'song_search' %}">Search Songs</a>
-                </li>
-            </ul>
-        </div>
-    {% endif %}
+{% block content %}
+<div class="playlist_head_container">
+    <h2 class="playlist_head">Your Playlists</h2>
 </div>
-{% endblock %}
+<table class="user_playlists_table">
+    {% for playlist in user_playlists %}
+        <tr class="user_playlists_table_row" data-url="{% url 'playlist_details' playlist.pk %}">
+            <td class="user_playlists_table_cell">{{ playlist.name }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.user_playlists_table_row').on('click', function() {
+        var url = $(this).data('url');
+        window.location.href = url;
+    });
+});
+</script>
+{% endblock content %}

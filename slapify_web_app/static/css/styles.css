@@ -322,3 +322,19 @@ input[type="file"] {
 .btn-submit:hover {
     background-color: #45a049;
 }
+
+.user_playlists_table {
+    width: 90%;
+}
+.user_playlists_table_row {
+    border-bottom: 1px solid;
+}
+.user_playlists_table_cell {
+    text-align: center;
+    padding: 10px;
+}
+
+.user_playlists_table_row:hover {
+    background-color: rgb(19, 19, 19);
+    cursor: pointer;
+}
