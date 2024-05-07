@@ -338,3 +338,20 @@ input[type="file"] {
     background-color: rgb(19, 19, 19);
     cursor: pointer;
 }
+
+.search_bar{
+    width: 600px !important;
+    background-color: #4CAF50;
+    border-color: black;
+    border-radius: 5px !important;
+    padding: 8px;
+}
+
+.search_bar::placeholder{
+    color: black;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+}

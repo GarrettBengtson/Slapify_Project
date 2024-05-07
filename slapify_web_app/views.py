@@ -9,6 +9,7 @@ from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
 from slapify_project.forms import SongForm
+from django.db.models import Q #for complex queries in the search function
 
 # Create your views here.
 def index(request):
@@ -104,19 +105,25 @@ def remove_song(request, playlist_pk, song_pk):
     return redirect('playlist_details', pk=playlist.pk)
 
 def song_search(request):
-    return render(request, 'slapify_web_app/song_search.html')
+    if request.method == "POST":
+        # Get the input from the search bar
+        searched = request.POST['searched']
+        songs = Song.objects.filter(Q(title__icontains=searched) | 
+                                    Q(genre__icontains=searched) | 
+                                    Q(artist__icontains=searched))
 
-# class SongSearchView():
-#     model = Playlist
+        # return search results with the 'searched' input
+        return render(request, 'slapify_web_app/song_search.html',
+                      {'searched':searched,
+                       'songs':songs}) 
+    else:
+        return render(request, 'slapify_web_app/song_search.html')
 
-#     # allow the search page to have access to the user's playlists
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['user_playlists'] = Playlist.objects.filter(user=self.request.user)
-#         return context
+def add_song_to_playlist(request):
+    return render(request, 'slapify_web_app/add_song_to_playlist.html')
 
-class AdminView(generic.DetailView):
-    template_name = 'admin.html'
+def AdminView(request):
+    return render(request, 'admin/admin_main.html')
 
 class Songs(generic.DetailView):
     model = Song

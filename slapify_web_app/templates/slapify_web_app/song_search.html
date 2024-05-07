@@ -1,8 +1,53 @@
 {% extends "base_template.html" %}
 
 {% block content %}
-<form class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+<h2>
+    Search For a Song
+</h2>
+<p>
+    You can search for a song by title, genre, or artist.
+</p>
+<form class="form-inline my-2 my-lg-0 search-form" method=POST action="{% url 'song_search' %}">
+    {% csrf_token %}
+    <div class="input-group align-items-center">
+        <input class="search_bar" type="search" placeholder="Search " aria-label="Search" name="searched">
+        <button class="submit_button my-2 my-sm-0" style="margin-left: 10px;" type="submit">Search</button>
+    </div>
 </form>
+
+<!-- Check if the user has searched something. Show this if they have -->
+{% if searched %}
+    <h2>Results for "{{searched}}"</h2>
+
+    <table class="playlist_table">
+        <tr class="playlist_table_row">
+            <th class="playlist_table_head">Title</th>
+            <th class="playlist_table_head">Artist</th>
+            <th class="playlist_table_head">Genre</th>
+            <th class="playlist_table_head">Duration</th>
+            <th class="playlist_table_head">Add to Playlist</th>
+            <th class="playlist_table_head"></th>
+        </tr>
+        {% for song in songs %}
+            <tr class="playlist_table_row">
+                <td class="playlist_table_cell">{{song.title}}</td>
+                <td class="playlist_table_cell">{{song.artist}}</td>
+                <td class="playlist_table_cell">{{ song.genre }}</td>
+                <td class="playlist_table_cell">{{song.formatted_duration}}</td>
+                <td>
+                    <a href="{% url 'add_to_playlist' song.pk %}">
+                        <button id="remove_song_button" class="submit_button">Add</button>
+                    </a>
+                </td>
+                <td>
+                    <audio id="audio-{{ song.pk }}" src="{{ song.song_file.url }}" type="audio/mp3" preload="auto"></audio>
+                    <button class="submit_button" onclick="playAudio('audio-{{ song.pk }}')">Play/Pause</button>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+{% endif %}
+
 {% endblock content %}
