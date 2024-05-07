@@ -148,7 +148,11 @@ def AdminView(request):
     return render(request, 'admin/admin.html')
 
 def genres(request):
-    return render(request, 'admin/genres.html')
+    songs = Song.objects.filter()
+
+    return render(request, 'admin/genres.html', {'songs':songs})
 
 def songs(request):
-    return render(request, 'admin/songs.html')
+    songs = Song.objects.filter()
+
+    return render(request, 'admin/songs.html', {'songs':songs})
