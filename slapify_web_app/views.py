@@ -40,6 +40,21 @@ def add_song(request):
         form = SongForm()
     return render(request, 'slapify_web_app/add_song.html', {'form': form})
 
+def edit_song(request, song_id):
+    song = get_object_or_404(Song, pk=song_id)
+    if request.method == 'POST':
+        form = SongForm(request.POST, request.FILES, instance=song)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = SongForm(instance=song)
+    return render(request, 'slapify_web_app/edit_song.html', {'form': form, 'song': song})
+
+def user_songs(request):
+    songs = Song.objects.filter(artist=request.user)
+    return render(request, 'slapify_web_app/user_songs.html', {'songs': songs})
+
 class PlaylistDetailView(generic.DetailView):
     """Lists songs in the playlist"""
     model = Playlist

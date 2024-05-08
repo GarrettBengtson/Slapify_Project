@@ -32,3 +32,5 @@ class SongForm(forms.ModelForm):
         if not song_file.name.endswith('.mp3'):
             raise forms.ValidationError('Only MP3 files are allowed.')
         return song_file
+    
+    

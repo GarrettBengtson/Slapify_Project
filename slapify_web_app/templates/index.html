@@ -10,6 +10,7 @@
     </div>
     {% if user.user_type == "Artist" %} 
         <button type="button" class="ablock" onclick="location.href = '/slapify/add_song/'">Add New Songs</button>
+        <button type="button" class="ablock" onclick="location.href = '/slapify/user_songs/'">View Your Songs</button>
     {% endif %}
     {% if user.user_type == "Admin" %} 
     <div class="col-md-12 text-center">

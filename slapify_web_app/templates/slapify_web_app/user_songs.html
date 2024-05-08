@@ -1,33 +1,40 @@
 {% extends "base_template.html" %}
 
 {% block content %}
-    <div class="playlist_head_container">
-        <h2 class="playlist_head">Songs</h2>
-    </div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Songs</title>
+</head>
+<body>
+    <h1>Songs Created by {{ user.get_username }}</h1>
     <table class="playlist_table">
         <tr class="playlist_table_row">
             <th class="playlist_table_head">Title</th>
             <th class="playlist_table_head">Artist</th>
             <th class="playlist_table_head">Genre</th>
             <th class="playlist_table_head">Duration</th>
-            <th class="playlist_table_head">Edit Song Details</th>
+            <th class="playlist_table_head">Edit Song</th>
             <th class="playlist_table_head"></th>
         </tr>
         {% for song in songs %}
             <tr class="playlist_table_row">
                 <td class="playlist_table_cell">{{song.title}}</td>
                 <td class="playlist_table_cell">{{song.artist}}</td>
-                <td class="playlist_table_cell">{{song.genre}}</td>
+                <td class="playlist_table_cell">{{ song.genre }}</td>
                 <td class="playlist_table_cell">{{song.formatted_duration}}</td>
                 <td>
                     <a href="{% url 'edit_song' song.pk %}">
                         <button id="edit_song_button" class="submit_button">Edit</button>
                     </a>
                 </td>
+                <td>
+                    <audio id="audio-{{ song.pk }}" src="{{ song.song_file.url }}" type="audio/mp3" preload="auto"></audio>
+                    <button class="submit_button" onclick="playAudio('audio-{{ song.pk }}')">Play/Pause</button>
+                </td>
             </tr>
         {% endfor %}
     </table>
-    <div class="col-md-12 text-center">
-        <button type="button" class="block" onclick="location.href = '/slapify/genres/'">View All Genres</button>
-    </div>
+</body>
+</html>
 {% endblock %}

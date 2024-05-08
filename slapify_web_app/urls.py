@@ -15,4 +15,6 @@ urlpatterns = [
     path('admin/', views.AdminView, name='admin'),
     path('songs/', views.songs, name='songs'),
     path('genres/', views.genres, name='genres'),
+    path('edit_song/<int:song_id>', views.edit_song, name='edit_song'),
+    path('user_songs/', views.user_songs, name='user_songs'),
 ]
